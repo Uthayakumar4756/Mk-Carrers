@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | MK Career Guidance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  body{background:var(--paper-tint);}
+  .admin-header{background:#fff;border-bottom:1px solid var(--line);padding:16px 0;}
+  .admin-header .wrap{display:flex;justify-content:space-between;align-items:center;}
+  .admin-shell{padding:32px 0 60px;}
+  .stat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
+  .stat-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-md);padding:20px;}
+  .stat-card .n{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.8rem;color:var(--navy-950);}
+  .stat-card .l{font-size:.82rem;color:var(--ink-500);}
+  .admin-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius-md);padding:22px;margin-bottom:22px;overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;}
+  th{text-align:left;color:var(--ink-500);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-700);}
+  .empty-note{color:var(--ink-500);font-size:.85rem;padding:14px 0;}
+  @media(max-width:760px){.stat-cards{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="wrap">
+    <div class="logo"><span class="logo-badge">MK</span><span><span class="logo-text-main" style="display:block;">MK Career Guidance</span><span class="logo-text-sub">ADMIN DASHBOARD</span></span></div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <span id="whoAmI" style="font-size:.85rem;color:var(--ink-500);"></span>
+      <a href="../index.html" class="btn btn-outline" style="padding:8px 16px;">View site</a>
+      <button id="logoutBtn" class="btn btn-navy" style="padding:8px 16px;">Log out</button>
+    </div>
+  </div>
+</header>
+
+<div class="admin-shell wrap">
+  <div class="login-warning" style="background:var(--orange-100);color:var(--orange-600);font-size:.8rem;border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:24px;">
+    This dashboard reads data saved in <strong>this browser's local storage</strong> — a quick demo, not a shared database. So it only shows leads/contacts submitted from this same browser. For real multi-device storage (MySQL or similar), connect the backend described in the project README, then this page can call its API instead.
+  </div>
+
+  <div class="stat-cards">
+    <div class="stat-card"><div class="n" id="statLeads">0</div><div class="l">Chatbot leads registered</div></div>
+    <div class="stat-card"><div class="n" id="statContacts">0</div><div class="l">Contact form submissions</div></div>
+    <div class="stat-card"><div class="n" id="statLogins">0</div><div class="l">Admin logins recorded</div></div>
+  </div>
+
+  <div class="admin-panel">
+    <h3 style="font-size:1rem;">Chatbot leads (registered emails)</h3>
+    <table>
+      <thead><tr><th>Email</th><th>Registered</th><th>Last seen</th><th>Visits</th><th>Messages</th></tr></thead>
+      <tbody id="leadsBody"></tbody>
+    </table>
+    <p class="empty-note" id="leadsEmpty" style="display:none;">No chatbot leads yet — they'll appear here once a visitor registers on the site.</p>
+  </div>
+
+  <div class="admin-panel">
+    <h3 style="font-size:1rem;">Contact form submissions</h3>
+    <table>
+      <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Topic</th><th>Message</th><th>Submitted</th></tr></thead>
+      <tbody id="contactsBody"></tbody>
+    </table>
+    <p class="empty-note" id="contactsEmpty" style="display:none;">No contact submissions yet.</p>
+  </div>
+
+  <div class="admin-panel">
+    <h3 style="font-size:1rem;">Admin login activity — who logged in, and when</h3>
+    <table>
+      <thead><tr><th>Username</th><th>Date &amp; time</th><th>Result</th></tr></thead>
+      <tbody id="loginsBody"></tbody>
+    </table>
+    <p class="empty-note" id="loginsEmpty" style="display:none;">No login activity recorded yet.</p>
+  </div>
+</div>
+
+<script src="../js/admin.js"></script>
+</body>
+</html>
