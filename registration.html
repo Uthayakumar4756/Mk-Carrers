@@ -1,0 +1,68 @@
+
+<div class="registration-form">
+    <h4 class="mb-1">Let's plan your next step.</h4>
+    <p class="text-muted mb-4">Share a few details — our team will call you within 24 hours.</p>
+
+    <form id="registrationForm">
+
+        <div class="mb-3">
+            <label class="form-label">Full name *</label>
+            <input type="text" class="form-control" id="fullName" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone number *</label>
+            <input type="tel" class="form-control" id="phone" maxlength="10" pattern="[0-9]{10}" required>
+            <small class="text-muted">Enter 10 digit mobile number</small>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Grade / year *</label>
+            <select class="form-select" id="grade" required>
+                <option value="">Select your grade</option>
+                <option value="Class 9">Class 9</option>
+                <option value="Class 10">Class 10</option>
+                <option value="Class 11">Class 11</option>
+                <option value="Class 12">Class 12</option>
+                <option value="College student">College student</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">What do you want to talk about?</label>
+            <select class="form-select" id="counsellingTopic">
+                <option value="">Select topic</option>
+                <option value="JEE Main / Advanced">JEE Main / Advanced</option>
+                <option value="TNEA / Choice filling">TNEA / Choice filling</option>
+                <option value="VITEEE / SRM / AEEE">VITEEE / SRM / AEEE</option>
+                <option value="General career counselling">General career counselling</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Anything specific you'd like to share?</label>
+            <textarea class="form-control" id="message" rows="3"></textarea>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary flex-grow-1" id="submitBtn">
+                Book My Session
+            </button>
+
+            <a href="https://wa.me/919500344960" target="_blank" class="btn btn-success">
+                WhatsApp
+            </a>
+        </div>
+
+        <p class="text-muted small mt-3 mb-0">
+            🔒 We'll never share your details.
+        </p>
+
+    </form>
+</div>

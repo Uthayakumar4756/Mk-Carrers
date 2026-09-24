@@ -1,0 +1,158 @@
+.call-section {
+  padding: 35px 0 25px;
+  background: var(--paper-tint);
+}
+
+.call-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 28px 34px;
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  border-radius: 22px;
+  background: linear-gradient(135deg, #f5f0ff, #ffffff 50%, #fff3ef);
+  box-shadow:
+    0 10px 30px rgba(124, 58, 237, 0.10),
+    0 4px 12px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.call-card::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: -100px;
+  right: 8%;
+  background: rgba(139, 92, 246, 0.18);
+  border-radius: 50%;
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+.call-card::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  bottom: -100px;
+  left: 25%;
+  background: rgba(251, 113, 133, 0.15);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.call-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 45px rgba(124, 58, 237, 0.17),
+    0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.call-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.call-badge {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 50px;
+  background: rgba(124, 58, 237, 0.10);
+  color: #6d28d9;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.call-content h3 {
+  margin: 10px 0 0;
+  color: #18181b;
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 750;
+}
+
+.call-actions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.call-btn {
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.call-btn:hover {
+  transform: translateY(-2px);
+}
+
+.call-btn-primary {
+  color: #fff;
+  border: 0;
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  box-shadow: 0 7px 18px rgba(124, 58, 237, 0.28);
+}
+
+.call-btn-primary:hover {
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.38);
+}
+
+.call-btn-whatsapp {
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  box-shadow: 0 5px 14px rgba(22, 101, 52, 0.08);
+}
+
+.call-btn-whatsapp:hover {
+  background: #bbf7d0;
+  box-shadow: 0 8px 20px rgba(22, 101, 52, 0.14);
+}
+
+@media (max-width: 768px) {
+  .call-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+  }
+
+  .call-content h3 {
+    font-size: 19px;
+  }
+
+  .call-actions {
+    width: 100%;
+  }
+
+  .call-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .call-actions {
+    flex-direction: column;
+  }
+
+  .call-btn {
+    width: 100%;
+  }
+}

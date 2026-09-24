@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | MK Career Guidance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  body{background:var(--navy-950);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+  .login-card{width:100%;max-width:380px;background:#fff;border-radius:var(--radius-lg);padding:34px 30px;box-shadow:var(--shadow-pop);}
+  .login-warning{background:var(--orange-100);color:var(--orange-600);font-size:.78rem;border-radius:var(--radius-sm);padding:10px 12px;margin-top:16px;}
+</style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="logo" style="justify-content:center;margin-bottom:18px;">
+      <span class="logo-badge">MK</span>
+      <span><span class="logo-text-main" style="display:block;">MK Career Guidance</span><span class="logo-text-sub">ADMIN PANEL</span></span>
+    </div>
+    <h2 style="text-align:center;font-size:1.2rem;">Admin Login</h2>
+    <p style="text-align:center;font-size:.85rem;margin-bottom:20px;">Only Madhankumar's team should sign in here.</p>
+    <form id="loginForm">
+      <div class="form-field"><label for="loginUser">Username</label><input type="text" id="loginUser" required autocomplete="username"></div>
+      <div class="form-field"><label for="loginPass">Password</label><input type="password" id="loginPass" required autocomplete="current-password"></div>
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      <p id="loginError" style="display:none;color:#c0392b;font-size:.82rem;margin-top:10px;text-align:center;">Incorrect username or password.</p>
+    </form>
+    <p class="login-warning">Demo mode: default login is <strong>admin</strong> / <strong>admin123</strong>. This runs in your browser only — change it in <code>js/admin.js</code> before going live, or connect the optional backend (see README) for real, secure, multi-admin accounts.</p>
+    <p style="text-align:center;margin-top:16px;"><a href="../index.html" style="font-size:.82rem;color:var(--navy-700);">&larr; Back to website</a></p>
+  </div>
+<script src="../js/admin.js"></script>
+</body>
+</html>
