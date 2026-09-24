@@ -1,21 +1,24 @@
+<link rel="stylesheet" href="css/header.css">
+
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
-      
-      <!-- Compact Rounded Header Logo Container -->
-      <div style="width: 45px; height: 45px; border-radius: 8px; overflow: hidden; background: var(--navy-800); flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <img src="images/logo.png" alt="MK Career Guidance Logo" style="width: 100%; height: 100%; object-fit: contain; display: block;">
-      </div>
 
-      <!-- Logo Text Brand Headers -->
+    <a href="index.html" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div style="width:45px;height:45px;border-radius:8px;overflow:hidden;background:var(--navy-800);flex-shrink:0;box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="images/logo.png" alt="MK Career Guidance Logo" style="width:100%;height:100%;object-fit:contain;display:block;">
+      </div>
       <span>
-        <span class="logo-text-main" style="display:block; font-weight: 700; color: var(--navy-800);">MK Career Guidance</span>
-        <span class="logo-text-sub" style="display:block; font-size: 0.75rem; color: #666; letter-spacing: 0.5px;">CAREER &amp; EDUCATION GUIDE</span>
+        <span class="logo-text-main" style="display:block;font-weight:700;color:var(--navy-800);">
+          MK Career Guidance
+        </span>
+        <span class="logo-text-sub" style="display:block;font-size:0.75rem;color:#666;letter-spacing:0.5px;">
+          CAREER &amp; EDUCATION GUIDE
+        </span>
       </span>
     </a>
 
     <nav class="main-nav" id="mainNav">
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="after-12th.html">After 12th</a>
       <a href="college-admissions.html">College &amp; Admissions</a>
@@ -24,12 +27,77 @@
     </nav>
 
     <div class="header-actions">
-      <button class="bell-btn" id="bellBtn" aria-label="Notifications" title="Notifications">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        <span class="bell-dot"></span>
+
+      <div class="notification-wrapper">
+
+        <button type="button" class="bell-btn" id="bellBtn" aria-label="Notifications" title="Notifications">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span class="bell-dot"></span>
+        </button>
+
+        <div class="notification-panel" id="notificationPanel">
+
+          <div class="notification-header">
+            <div>
+              <strong>Student Updates</strong>
+              <span>Helpful career reminders</span>
+            </div>
+
+            <button type="button" id="notificationClose" aria-label="Close">
+              &times;
+            </button>
+          </div>
+
+          <div class="notification-list">
+
+            <div class="notification-item">
+              <div class="notification-icon blue">🎓</div>
+              <div>
+                <strong>Choose Your Course Wisely</strong>
+                <p>Choose a course based on your interests, strengths and career goals.</p>
+              </div>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-icon green">🧭</div>
+              <div>
+                <strong>Know Your Career Path</strong>
+                <p>Understand your future opportunities before selecting a course.</p>
+              </div>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-icon orange">🏫</div>
+              <div>
+                <strong>Choose Your College Carefully</strong>
+                <p>Compare course, fees, location and placement opportunities.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="notification-footer">
+            <a href="contact.html">Need career guidance? Talk to us →</a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <a href="contact.html" class="btn btn-primary" style="padding:10px 20px;">
+        Get Career Guidance
+      </a>
+
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <a href="contact.html" class="btn btn-primary" style="padding:10px 20px;">Get Career Guidance</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+
     </div>
+
   </div>
 </header>
