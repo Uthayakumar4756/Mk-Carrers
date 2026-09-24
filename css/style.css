@@ -152,7 +152,7 @@ section{padding:26px 0;}
 .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
 .hero-media{position:relative;}
 
-@media(max-width:900px){.hero-media img{aspect-ratio:16/9;}}
+@media(max-width:900px){.hero-media img{aspect-ratio:7/9;}}
 .hero-media::before{
   content:"";position:absolute;inset:10px -10px -10px 10px;border-radius:var(--radius-md);
   border:2px solid rgba(245,135,31,.55);z-index:-1;

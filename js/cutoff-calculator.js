@@ -1,9 +1,4 @@
-/* ===========================================================
-   MK CAREER GUIDANCE — Cutoff Calculator
-   Filters the sample dataset in js/cutoff-data.js and renders
-   a results table, similar in spirit to the official TNEA
-   cutoff tool. Runs entirely in the browser — no server needed.
-   =========================================================== */
+
 (function(){
   "use strict";
   if(typeof CUTOFF_DATA === "undefined") return;
@@ -54,16 +49,24 @@
   });
 
   /* ---- category chips ---- */
-  document.querySelectorAll(".cat-chip").forEach(function(chip){
-    var input = chip.querySelector("input");
-    chip.addEventListener("click", function(e){
-      if(e.target !== input) input.checked = !input.checked;
-      chip.classList.toggle("on", input.checked);
-      state.categories = Array.from(document.querySelectorAll(".cat-chip input:checked")).map(function(i){ return i.value; });
-      state.page = 1;
-      render();
+  /* ---- category chips ---- */
+document.querySelectorAll(".cat-chip").forEach(function(chip){
+  var input = chip.querySelector("input");
+
+  input.addEventListener("change", function(){
+    chip.classList.toggle("on", input.checked);
+
+    state.categories = Array.from(
+      document.querySelectorAll(".cat-chip input:checked")
+    ).map(function(i){
+      return i.value;
     });
+
+    state.page = 1;
+    render();
   });
+});
+
 
   /* ---- filter fields ---- */
   ["calcDistrict","calcBranch","calcCollege"].forEach(function(id){
@@ -107,7 +110,10 @@
     document.getElementById("calcResultsLabel").textContent = tabLabels[state.tab] || "Aggregate Marks";
 
     var thead = document.getElementById("calcTableHead");
-    var visibleCats = CATS.filter(function(c){ return state.categories.indexOf(c) !== -1; });
+   var visibleCats = CATS.filter(function(c){
+  return state.categories.indexOf(c) !== -1;
+});
+
     var headHtml = "<tr><th>College</th><th>District</th><th>Branch</th>";
     visibleCats.forEach(function(c){ headHtml += "<th>" + c + "</th>"; });
     headHtml += "</tr>";
