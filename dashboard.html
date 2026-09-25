@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | MK Career Guidance</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/admin-common.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="images/logo.png" alt="MK Career Guidance">
+
+            <div>
+                <h2>MK Career</h2>
+                <span>ADMIN PANEL</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html" class="menu-item active">
+                <span>📊</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="students.html" class="menu-item">
+                <span>👨‍🎓</span>
+                <span>Student Details</span>
+            </a>
+
+            <a href="mock-results.html" class="menu-item">
+                <span>📝</span>
+                <span>Mock Test List</span>
+            </a>
+
+            <a href="visitors.html" class="menu-item">
+                <span>🌐</span>
+                <span>Website Visitors</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="logged-user">
+
+                <div class="user-avatar" id="sidebarAvatar">
+                    A
+                </div>
+
+                <div>
+                    <strong id="sidebarUsername">Admin</strong>
+                    <span id="sidebarRole">Administrator</span>
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button">
+
+                <span>↪</span>
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button
+                type="button"
+                id="mobileMenuButton"
+                class="mobile-menu-button">
+                ☰
+            </button>
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Welcome to MK Career Guidance admin panel</p>
+            </div>
+
+            <div class="topbar-user">
+                <span>Welcome,</span>
+                <strong id="topUsername">Admin</strong>
+            </div>
+
+        </header>
+
+        <section class="page-content">
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">👨‍🎓</div>
+                    <div>
+                        <span>Total Students</span>
+                        <strong id="totalStudents">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">📝</div>
+                    <div>
+                        <span>Mock Questions</span>
+                        <strong id="totalQuestions">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">🎯</div>
+                    <div>
+                        <span>Mock Test Attempts</span>
+                        <strong id="totalTests">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">🌐</div>
+                    <div>
+                        <span>Total Visits</span>
+                        <strong id="totalVisits">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon cyan">👁</div>
+                    <div>
+                        <span>Unique Visitors</span>
+                        <strong id="uniqueVisitors">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+                        <div>
+                            <h2>Quick Overview</h2>
+                            <p>Website and student activity</p>
+                        </div>
+                    </div>
+
+                    <div class="overview-grid">
+
+                        <div class="overview-item">
+                            <span>Students Registered</span>
+                            <strong id="overviewStudents">0</strong>
+                        </div>
+
+                        <div class="overview-item">
+                            <span>Mock Tests Completed</span>
+                            <strong id="overviewTests">0</strong>
+                        </div>
+
+                        <div class="overview-item">
+                            <span>Website Visits</span>
+                            <strong id="overviewVisits">0</strong>
+                        </div>
+
+                        <div class="overview-item">
+                            <span>Unique Visitors</span>
+                            <strong id="overviewUnique">0</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+                        <div>
+                            <h2>Admin Panel</h2>
+                            <p>Quick access</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-links">
+
+                        <a href="students.html">
+                            <span>👨‍🎓</span>
+                            <div>
+                                <strong>Student Details</strong>
+                                <small>View registered students</small>
+                            </div>
+                        </a>
+
+                        <a href="mock-results.html">
+                            <span>📝</span>
+                            <div>
+                                <strong>Mock Test Results</strong>
+                                <small>View student scores</small>
+                            </div>
+                        </a>
+
+                        <a href="visitors.html">
+                            <span>🌐</span>
+                            <div>
+                                <strong>Website Visitors</strong>
+                                <small>View visitor history</small>
+                            </div>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div id="mobileOverlay" class="mobile-overlay"></div>
+
+<script src="js/url.js"></script>
+<script src="js/admin-common.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

@@ -2,59 +2,207 @@ let questions = [];
 let currentQuestion = 0;
 let answers = [];
 
+let studentName = "";
+let studentMobile = "";
+
+let quizModal;
+let studentInfoModal;
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    const studentId = localStorage.getItem("studentId");
+    const quizModalElement =
+        document.getElementById("quizModal");
 
-    if (!studentId) {
-        alert("Please register before starting the mock test.");
-        window.location.href = "index.html";
+    const studentInfoModalElement =
+        document.getElementById("studentInfoModal");
+
+    if (!quizModalElement || !studentInfoModalElement) {
+        console.error("Quiz modal not found");
         return;
     }
 
-    const quizModalElement = document.getElementById("quizModal");
+    quizModal =
+        new bootstrap.Modal(quizModalElement);
 
-    if (!quizModalElement) {
-        console.error("quizModal not found");
-        return;
+    studentInfoModal =
+        new bootstrap.Modal(studentInfoModalElement);
+
+    const studentInfoForm =
+        document.getElementById("studentInfoForm");
+
+    const nextBtn =
+        document.getElementById("nextBtn");
+
+    const backBtn =
+        document.getElementById("backBtn");
+
+    const doneBtn =
+        document.getElementById("doneBtn");
+
+    if (studentInfoForm) {
+        studentInfoForm.addEventListener(
+            "submit",
+            startQuiz
+        );
     }
 
-    const quizModal = new bootstrap.Modal(quizModalElement);
+    if (nextBtn) {
+        nextBtn.addEventListener(
+            "click",
+            nextQuestion
+        );
+    }
 
-    loadQuestions();
+    if (backBtn) {
+        backBtn.addEventListener(
+            "click",
+            previousQuestion
+        );
+    }
+
+    if (doneBtn) {
+        doneBtn.addEventListener(
+            "click",
+            function () {
+                window.location.href = "index.html";
+            }
+        );
+    }
 
     quizModal.show();
 
-    document.getElementById("nextBtn").addEventListener("click", nextQuestion);
-    document.getElementById("backBtn").addEventListener("click", previousQuestion);
+    loadQuestions();
 
-    document.getElementById("doneBtn").addEventListener("click", function () {
-        window.location.href = "index.html";
-    });
+    setTimeout(function () {
+
+        const quizBackground =
+            document.getElementById("quizBackground");
+
+        if (quizBackground) {
+            quizBackground.classList.add("quiz-blur");
+        }
+
+        studentInfoModal.show();
+
+    }, 300);
+
 });
+
+async function startQuiz(event) {
+
+    event.preventDefault();
+
+    const nameInput =
+        document.getElementById("studentName");
+
+    const mobileInput =
+        document.getElementById("studentMobile");
+
+    const errorBox =
+        document.getElementById("studentInfoError");
+
+    studentName =
+        nameInput.value.trim();
+
+    studentMobile =
+        mobileInput.value.trim();
+
+    errorBox.classList.add("d-none");
+    errorBox.innerText = "";
+
+    if (!studentName) {
+
+        errorBox.innerText =
+            "Please enter your name.";
+
+        errorBox.classList.remove("d-none");
+
+        nameInput.focus();
+
+        return;
+    }
+
+    if (
+        studentMobile &&
+        !/^[0-9]{10,15}$/.test(studentMobile)
+    ) {
+
+        errorBox.innerText =
+            "Please enter a valid mobile number.";
+
+        errorBox.classList.remove("d-none");
+
+        mobileInput.focus();
+
+        return;
+    }
+
+    localStorage.setItem(
+        "mockStudentName",
+        studentName
+    );
+
+    localStorage.setItem(
+        "mockStudentMobile",
+        studentMobile
+    );
+
+    studentInfoModal.hide();
+
+    const quizBackground =
+        document.getElementById("quizBackground");
+
+    if (quizBackground) {
+        quizBackground.classList.remove("quiz-blur");
+    }
+}
 
 async function loadQuestions() {
 
     try {
 
-        const response = await fetch(
-            API_BASE_URL + "/mkcarrer/quiz/questions"
-        );
+        document
+            .getElementById("questionText")
+            .innerText =
+            "Loading question...";
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/mkcarrer/quiz/questions"
+            );
 
         if (!response.ok) {
-            throw new Error("Unable to load questions");
+            throw new Error(
+                "Unable to load questions"
+            );
         }
 
-        questions = await response.json();
+        questions =
+            await response.json();
 
-        console.log("Questions received:", questions);
+        console.log(
+            "Questions received:",
+            questions
+        );
 
-        if (!questions || questions.length === 0) {
-            alert("No quiz questions available.");
+        if (
+            !questions ||
+            questions.length === 0
+        ) {
+
+            document
+                .getElementById("questionText")
+                .innerText =
+                "No quiz questions available.";
+
             return;
         }
 
-        answers = new Array(questions.length).fill(null);
+        answers =
+            new Array(
+                questions.length
+            ).fill(null);
 
         currentQuestion = 0;
 
@@ -62,39 +210,64 @@ async function loadQuestions() {
 
     } catch (error) {
 
-        console.error("Question loading error:", error);
+        console.error(
+            "Question loading error:",
+            error
+        );
 
-        document.getElementById("questionText").innerText =
+        document
+            .getElementById("questionText")
+            .innerText =
             "Unable to load quiz questions.";
     }
 }
 
 function showQuestion() {
 
-    if (!questions || questions.length === 0) {
+    if (
+        !questions ||
+        questions.length === 0
+    ) {
         return;
     }
 
-    const question = questions[currentQuestion];
+    const question =
+        questions[currentQuestion];
 
-    document.getElementById("questionNumber").innerText =
-        "QUESTION " + (currentQuestion + 1);
+    document
+        .getElementById("questionNumber")
+        .innerText =
+        "QUESTION " +
+        (currentQuestion + 1);
 
-    document.getElementById("progressText").innerText =
-        "Question " + (currentQuestion + 1) +
-        " of " + questions.length;
+    document
+        .getElementById("progressText")
+        .innerText =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        questions.length;
 
-    document.getElementById("questionText").innerText =
+    document
+        .getElementById("questionText")
+        .innerText =
         question.question;
 
     const progress =
-        ((currentQuestion + 1) / questions.length) * 100;
+        (
+            (currentQuestion + 1) /
+            questions.length
+        ) * 100;
 
-    document.getElementById("progressBar").style.width =
+    document
+        .getElementById("progressBar")
+        .style.width =
         progress + "%";
 
     const optionsContainer =
-        document.getElementById("optionsContainer");
+        document.getElementById(
+            "optionsContainer"
+        );
 
     optionsContainer.innerHTML = "";
 
@@ -119,71 +292,135 @@ function showQuestion() {
 
     options.forEach(function (option) {
 
-        const optionDiv = document.createElement("div");
+        const optionDiv =
+            document.createElement("div");
 
-        optionDiv.className = "option";
+        optionDiv.classList.add("option");
 
-        if (
-            answers[currentQuestion] &&
-            answers[currentQuestion].questionId === question.id &&
-            answers[currentQuestion].selectedAnswer === option.letter
-        ) {
-            optionDiv.classList.add("selected");
-        }
+        optionDiv.setAttribute(
+            "data-answer",
+            option.letter
+        );
 
         optionDiv.innerHTML = `
             <span class="option-letter">
                 ${option.letter}
             </span>
-            <span>${option.text}</span>
+            <span class="option-text">
+                ${option.text}
+            </span>
         `;
 
-        optionDiv.addEventListener("click", function () {
+        const selectedAnswer =
+            answers[currentQuestion];
 
-            answers[currentQuestion] = {
-                questionId: question.id,
-                selectedAnswer: option.letter
-            };
+        if (
+            selectedAnswer &&
+            selectedAnswer.questionId ===
+                question.id &&
+            selectedAnswer.selectedAnswer ===
+                option.letter
+        ) {
 
-            document
-                .querySelectorAll("#optionsContainer .option")
-                .forEach(function (item) {
-                    item.classList.remove("selected");
-                });
-
-            optionDiv.classList.add("selected");
-
-            console.log(
-                "Selected answer:",
-                answers[currentQuestion]
+            optionDiv.classList.add(
+                "selected"
             );
-        });
+        }
 
-        optionsContainer.appendChild(optionDiv);
+        optionDiv.addEventListener(
+            "click",
+            function () {
+
+                selectOption(
+                    question,
+                    option.letter,
+                    optionDiv
+                );
+
+            }
+        );
+
+        optionsContainer.appendChild(
+            optionDiv
+        );
+
     });
 
-    document.getElementById("backBtn").disabled =
+    document
+        .getElementById("backBtn")
+        .disabled =
         currentQuestion === 0;
 
-    const nextBtn = document.getElementById("nextBtn");
+    const nextBtn =
+        document.getElementById("nextBtn");
 
-    if (currentQuestion === questions.length - 1) {
-        nextBtn.innerText = "Submit Quiz";
+    if (
+        currentQuestion ===
+        questions.length - 1
+    ) {
+
+        nextBtn.innerText =
+            "Submit Quiz";
+
     } else {
-        nextBtn.innerText = "Next →";
+
+        nextBtn.innerText =
+            "Next →";
     }
+}
+
+function selectOption(
+    question,
+    selectedLetter,
+    selectedElement
+) {
+
+    answers[currentQuestion] = {
+        questionId: question.id,
+        selectedAnswer: selectedLetter
+    };
+
+    const allOptions =
+        document.querySelectorAll(
+            "#optionsContainer .option"
+        );
+
+    allOptions.forEach(function (option) {
+
+        option.classList.remove(
+            "selected"
+        );
+
+    });
+
+    selectedElement.classList.add(
+        "selected"
+    );
+
+    console.log(
+        "Selected:",
+        selectedLetter
+    );
+
 }
 
 function nextQuestion() {
 
-    if (!answers[currentQuestion]) {
+    if (
+        !answers[currentQuestion]
+    ) {
 
-        alert("Please select an answer.");
+        alert(
+            "Please select an answer."
+        );
 
         return;
     }
 
-    if (currentQuestion < questions.length - 1) {
+    if (
+        currentQuestion <
+        questions.length - 1
+    ) {
 
         currentQuestion++;
 
@@ -217,11 +454,12 @@ function submitQuiz() {
     }
 
     const requestData = {
-        studentId: Number(localStorage.getItem("studentId")),
+        studentName: studentName,
+        studentMobile: studentMobile || "",
         answers: answerList
     };
 
-    console.log("Quiz result request:", requestData);
+    console.log("Sending quiz result:", requestData);
 
     $.ajax({
         url: API_BASE_URL + "/mkcarrer/quiz/result",
@@ -233,40 +471,63 @@ function submitQuiz() {
 
             console.log("Quiz result response:", response);
 
-            showResult(response);
+            if (response.success) {
+                showResult(response);
+            } else {
+                alert(response.message || "Unable to save quiz result.");
+            }
         },
 
         error: function (xhr) {
 
-            console.error(
-                "Quiz result error:",
-                xhr.status,
-                xhr.responseText
-            );
+            console.error("Quiz result error:");
+            console.error("Status:", xhr.status);
+            console.error("Response:", xhr.responseText);
 
-            alert("Unable to save quiz result.");
+            let message = "Unable to save quiz result.";
+
+            try {
+                const response = JSON.parse(xhr.responseText);
+
+                if (response.message) {
+                    message = response.message;
+                }
+            } catch (e) {
+                console.error("Invalid JSON response");
+            }
+
+            alert(message);
         }
     });
 }
 
 function showResult(result) {
 
-    document.getElementById("quizContainer")
+    document
+        .getElementById("quizContainer")
         .classList.add("d-none");
 
-    document.getElementById("quizFooter")
+    document
+        .getElementById("quizFooter")
         .classList.add("d-none");
 
-    document.getElementById("resultContainer")
+    document
+        .getElementById("resultContainer")
         .classList.remove("d-none");
 
-    document.getElementById("resultScore").innerText =
+    document
+        .getElementById("resultScore")
+        .innerText =
         result.score + "/10";
 
-    document.getElementById("correctCount").innerText =
+    document
+        .getElementById("correctCount")
+        .innerText =
         result.correctAnswers;
 
-    document.getElementById("wrongCount").innerText =
+    document
+        .getElementById("wrongCount")
+        .innerText =
         result.wrongAnswers;
 
     let message = "";
@@ -287,6 +548,8 @@ function showResult(result) {
             "Good attempt! Explore different career areas and discover your strengths.";
     }
 
-    document.getElementById("resultMessage").innerText =
+    document
+        .getElementById("resultMessage")
+        .innerText =
         message;
 }

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mock Test Results | MK Career Guidance</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/admin-common.css">
+    <link rel="stylesheet" href="css/mock-results.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="images/logo.png" alt="MK Career Guidance">
+
+            <div>
+                <h2>MK Career</h2>
+                <span>ADMIN PANEL</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html" class="menu-item">
+                <span>📊</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="students.html" class="menu-item">
+                <span>👨‍🎓</span>
+                <span>Student Details</span>
+            </a>
+
+            <a href="mock-results.html" class="menu-item active">
+                <span>📝</span>
+                <span>Mock Test List</span>
+            </a>
+
+            <a href="visitors.html" class="menu-item">
+                <span>🌐</span>
+                <span>Website Visitors</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="logged-user">
+                <div class="user-avatar" id="sidebarAvatar">A</div>
+
+                <div>
+                    <strong id="sidebarUsername">Admin</strong>
+                    <span id="sidebarRole">Administrator</span>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button">
+
+                <span>↪</span>
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button
+                type="button"
+                id="mobileMenuButton"
+                class="mobile-menu-button">
+                ☰
+            </button>
+
+            <div>
+                <h1>Mock Test Results</h1>
+                <p>Student mock test performance</p>
+            </div>
+
+            <div class="topbar-user">
+                <span>Welcome,</span>
+                <strong id="topUsername">Admin</strong>
+            </div>
+
+        </header>
+
+        <section class="page-content">
+
+            <div class="section-card">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Mock Test List</h2>
+                        <p id="resultCount">Loading results...</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="refresh-button"
+                        id="refreshResults">
+                        ↻ Refresh
+                    </button>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Student</th>
+                                <th>Mobile</th>
+                                <th>Total</th>
+                                <th>Correct</th>
+                                <th>Wrong</th>
+                                <th>Score</th>
+                                <th>Percentage</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="mockTableBody">
+
+                            <tr>
+                                <td colspan="9" class="loading">
+                                    Loading results...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div id="mobileOverlay" class="mobile-overlay"></div>
+
+<script src="js/url.js"></script>
+<script src="js/admin-common.js"></script>
+<script src="js/mock-results.js"></script>
+
+</body>
+</html>

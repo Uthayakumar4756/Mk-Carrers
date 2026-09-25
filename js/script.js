@@ -259,3 +259,18 @@ function initMobileNav() {
   };
 
 }
+
+function trackWebsiteVisit() {
+
+    fetch(
+        API_BASE_URL +
+        "/mkcarrer/visit?pageUrl=" +
+        encodeURIComponent(window.location.pathname),
+        {
+            method: "POST"
+        }
+    ).catch(function (error) {
+        console.error("Visitor tracking failed:", error);
+    });
+
+}
